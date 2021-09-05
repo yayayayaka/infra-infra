@@ -16,19 +16,15 @@
 
   networking.interfaces.enp3s0.useDHCP = true;
 
-  fileSystems."/mnt" = {
-    device = "/dev/disk/by-uuid/2efbf2c1-cad5-4df3-9851-d831917da299";
-    fsType = "btrfs";
-    options = ["nofail"];
-  };
+  fileSystems."/mnt" =
+    { device = "tank";
+      fsType = "zfs";
+      options = ["nofail"];
+    };
 
-  #boot.supportedFilesystems = [ "zfs" ];
-  #networking.hostId = "bdd1349f";
-  #fileSystems."/data" = {
-  #  device = "rpool";
-  #  fsType = "zfs";
-  #  options = ["nofail"];
-  #};
+  boot.kernelPackages = pkgs.linuxPackages;
+  boot.supportedFilesystems = [ "zfs" ];
+  networking.hostId = "bdd1349f";
 
   #services.samba = {
   #  package = pkgs.sambaFull;
