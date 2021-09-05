@@ -49,6 +49,9 @@
     vim
     wget
     jq
+    iperf
+    pv
+    lsof
   ];
 
   programs.bash.shellAliases = {
