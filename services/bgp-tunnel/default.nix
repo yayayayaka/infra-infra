@@ -18,6 +18,13 @@ let
         PublicKey = "BG2oXzv2qZnQTr+PjUoEMA+vG24g617L3+5TjqHycHk=";
       };
     };
+    osmium = rec {
+      magicNumber = 8;
+      wireguard = {
+        Endpoint = "5.199.141.154:51818";
+        PublicKey = "kih/GnR4Bov/DM/7Rd21wK+PFQRUNH6sywVuNKkUAkk=";
+      };
+    };
   };
 
 in {
