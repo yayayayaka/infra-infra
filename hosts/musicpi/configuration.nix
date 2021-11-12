@@ -13,13 +13,15 @@
     (modulesPath + "/installer/sd-card/sd-image-aarch64.nix")
   ];
 
-  boot.supportedFilesystems = lib.mkForce [ "ext4" "vfat" "nfs" ];
+  # We import sd-image-aarch64.nix so we can build a config.system.build.sdImage
+  # But it imports some modules we don't want, so disable them
+  disabledModules = [
+    "profiles/base.nix"
+    "profiles/all-hardware.nix"
+  ];
 
   nixpkgs.system = "aarch64-linux";
-
-  boot.initrd.availableKernelModules = lib.mkForce [ "vc4" "i2c_bcm2835" ];
   boot.kernelPackages = pkgs.linuxPackages_rpi3;
-
   hardware.deviceTree.filter = "bcm*-rpi-3-b-plus.dtb";
   hardware.deviceTree.raspberryPi.enable = true;
   hardware.deviceTree.raspberryPi.params.spi = "on";
@@ -30,7 +32,7 @@
     useDHCP = lib.mkForce true;
   };
 
-  documentation.enable = false;
+  boot.tmpOnTmpfs = true; # building stuff on sd-card is slow
 
   system.stateVersion = "21.05";
 }
