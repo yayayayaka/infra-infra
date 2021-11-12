@@ -6,13 +6,13 @@ let
 
     stdenv.mkDerivation rec {
       pname = "snapweb";
-      version = "0.2.0";
+      version = "latest";
 
       src = fetchFromGitHub {
         owner = "badaix";
         repo = pname;
-        rev = "v${version}";
-        sha256 = "1l61hy25gl6mp94jnzcb62w9av3750ipsydlm1qjzxx5nnx36rry";
+        rev = "ccfa454e9ff32f0443b425ee8ae1b0c25158f200";
+        sha256 = "sha256-wScOUiIKhNkfwReLxPSNs9BsXjvCbhM1Lr84w8ynWVU=";
       };
 
       nativeBuildInputs = [ nodePackages.typescript ];
