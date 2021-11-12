@@ -33,16 +33,6 @@ in {
   environment.systemPackages = with pkgs; [ wireguard-tools ];
 
   networking.useNetworkd = true;
-  systemd.services.systemd-networkd.serviceConfig.ExecStart = let
-    systemd-patched = pkgs.systemd.overrideAttrs (old: {
-      patches = old.patches ++ [
-        ./0001-network-Allow-to-configure-unreachable-blackhole-Rou.patch
-      ];
-    });
-  in mkForce [
-    ""
-    "!!${systemd-patched}/lib/systemd/systemd-networkd"
-  ];
 
   networking.interfaces.lo = {
     ipv6.addresses = [
