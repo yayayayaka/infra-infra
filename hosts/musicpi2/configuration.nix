@@ -13,8 +13,6 @@
     (modulesPath + "/installer/sd-card/sd-image-aarch64.nix")
   ];
 
-  deploy.ssh.host = "musicpi2.lan";
-
   boot.supportedFilesystems = lib.mkForce [ "ext4" "vfat" "nfs" ];
 
   nixpkgs.system = "aarch64-linux";

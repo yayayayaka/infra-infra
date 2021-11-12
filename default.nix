@@ -4,6 +4,5 @@ let
   };
 in {
   inherit pkgs;
-  deploy = import ./lib/deploy.nix { inherit pkgs; };
 }
   // (import ./lib/hosts.nix { inherit pkgs; })
