@@ -10,6 +10,7 @@
     ../../services/nfs-server
     ../../services/bgp-tunnel
     ../../services/unifi
+    ../../services/presence-monitor
   ];
 
   boot.loader.grub.device = "/dev/disk/by-id/wwn-0x5000c50038ba4de7";
