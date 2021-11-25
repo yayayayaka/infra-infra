@@ -10,7 +10,7 @@ let
       src = builtins.fetchGit {
         url = "https://git.yuka.dev/yuka/presence-monitor/";
         ref = "main";
-        rev = "db577ed36f70ca5e16ab7c542fef831842d5779d";
+        rev = "7f7b361589f36fafb84a4fb7bac679cce52f4856";
       };
       cargoLock = {
         lockFile = src + "/Cargo.lock";
