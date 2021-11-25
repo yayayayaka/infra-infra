@@ -47,6 +47,11 @@
   #  };
   #};
 
+  services.nginx = {
+    enable = true;
+    virtualHosts.default.locations."/".root = ./html;
+  };
+
   system.stateVersion = "21.05";
 }
 

@@ -1,0 +1,56 @@
+<style>
+a { color: #eee; }
+html { background-color: #222; color: #eee; }
+code { background-color: #ccc; color: #222; padding: .5em; margin: .5em 0; }
+</style>
+
+<h2>Services on AfRA core:</h2>
+
+<h3 id="presence"><a href="/presence/">presence monitor</a></h3>
+
+Announce your presence at AfRA, by detecting when your devices are on the network.
+
+<h3 id="mpd">mpd</h3>
+
+Music player daemon.
+Zeige Deinen Lieblings-MPD-Client auf core.lan Port 6600 (Standard-Port)
+
+<h3 id="ympd"><a href="/ympd/">ympd</a></h3>
+
+Web client für mpd
+
+<h3 id="pulseaudio">pulseaudio</h3>
+
+<p>PulseAudio lauscht auf dem Standard-Port 4713.</p>
+
+<code>
+export PULSE_SERVER=core.lan
+</code>
+
+<p>In der gleichen shell gestartete anwendungen streamen den output an core</p>
+
+<p>oder:</p>
+
+<code>
+pacmd load-module module-tunnel-sink-now server=core.lan
+</code>
+
+<p>Ein neues output device ist auf dem lokalen pulseaudio-server verfügbar</p>
+
+<h3 id="snapcast">snapcast</h3>
+
+Synchronisierte Audiowiedergabe auf alle Musiksysteme. Wird von pulseaudio und mpd als standard-output verwendet.
+
+<h3 id="snapweb"><a href="/snapweb/">snapweb</a></h3>
+
+Web client zum Anpassen der Lautstärke und Latenzanpassung von snapcast
+
+<h3 id="nfs">nfs</h3>
+
+<p>Befolge die Anweisungen Deiner Distribution zur Einrichtung als NFS-Client.</p>
+
+<p>Z.B. für Arch Linux: https://wiki.archlinux.org/title/NFS</p>
+
+<code>
+sudo mount -t nfs -o vers=4 core.lan:/ /mnt/core
+</code>
