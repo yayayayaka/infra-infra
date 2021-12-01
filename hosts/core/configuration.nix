@@ -1,11 +1,18 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
-{
+let
+  # https://github.com/NixOS/nixpkgs/pull/144674
+  snapcast = pkgs.snapcast.overrideAttrs (old: {
+    buildInputs = old.buildInputs ++ [ pkgs.libpulseaudio ];
+  });
+
+in {
   imports = [
     ./hardware-configuration.nix
     ../../common
     ../../services/pulseaudio
     ../../services/snapcast-server
+    ../../services/snapcast-client
     ../../services/mpd
     ../../services/nfs-server
     ../../services/bgp-tunnel
@@ -51,6 +58,16 @@
     enable = true;
     virtualHosts.default.locations."/".root = ./html;
   };
+
+  hardware.pulseaudio.extraConfig = ''
+    set-card-profile alsa_card.pci-0000_00_1b.0 output:analog-stereo+input:analog-stereo
+    set-sink-port alsa_output.pci-0000_00_1b.0.analog-stereo analog-output-lineout
+    set-source-port alsa_input.pci-0000_00_1b.0.analog-stereo analog-input-linein
+    load-module module-loopback source=alsa_input.pci-0000_00_1b.0.analog-stereo sink=Snapcast
+    set-default-sink Snapcast
+  '';
+
+  systemd.services.snapclient.serviceConfig.ExecStart = lib.mkForce "${snapcast}/bin/snapclient -h core.lan --player pulse -s alsa_output.pci-0000_00_1b.0.analog-stereo";
 
   system.stateVersion = "21.05";
 }
