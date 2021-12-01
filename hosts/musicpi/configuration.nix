@@ -8,8 +8,6 @@
     ../../common
     ../../services/pulseaudio
     ../../services/snapcast-client
-    ../../services/mpd
-    ../../services/nfs-client
     (modulesPath + "/installer/sd-card/sd-image-aarch64.nix")
   ];
 
