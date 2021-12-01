@@ -17,6 +17,8 @@
     "profiles/base.nix"
     "profiles/all-hardware.nix"
   ];
+  boot.initrd.availableKernelModules = [ "mmc_block" "usbhid" "usb_storage" "vc4" ];
+  boot.initrd.includeDefaultModules = false;
 
   nixpkgs.system = "aarch64-linux";
   boot.kernelPackages = pkgs.linuxPackages_rpi3;
