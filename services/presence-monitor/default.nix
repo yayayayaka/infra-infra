@@ -46,7 +46,7 @@ let
 
       src = builtins.fetchGit {
         url = "https://gitlab.com/luxferresum/presence-web/";
-        rev = "bbddb356bd38c136d5adee49cebb1b95ae7b2ef4";
+        rev = "e906fc33e8c707236d7fd85d84db36c2c596e855";
       };
 
       node_modules = npmlock2nix.node_modules { inherit src; };
