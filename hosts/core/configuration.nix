@@ -54,10 +54,22 @@ in {
   #  };
   #};
 
+  security.acme = {
+    email = "afra@yuka.dev";
+    acceptTerms = true;
+  };
+
   services.nginx = {
     enable = true;
-    virtualHosts.default.locations."/".root = ./html;
+    virtualHosts.default = {
+      locations."/".root = ./html;
+      serverName = "afra-core.yuka.dev";
+      enableACME = true;
+      addSSL = true;
+    };
   };
+
+  networking.firewall.allowedTCPPorts = [ 443 ];
 
   hardware.pulseaudio.extraConfig = ''
     set-card-profile alsa_card.pci-0000_00_1b.0 output:analog-stereo+input:analog-stereo
