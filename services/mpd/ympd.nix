@@ -23,15 +23,20 @@ in {
 
   services.nginx = {
     enable = true;
-    virtualHosts.default = {
-      locations."/ympd/" = {
-        proxyPass = "http://localhost:8062/";
-        proxyWebsockets = true;
-        extraConfig = ''
-          allow 172.23.42.0/24;
-          allow fd00::/8;
-          deny all;
-        '';
+    virtualHosts = {
+      "core.afra-berlin.eu".locations."/ympd/".return = "307 https://ympd.afra-berlin.eu";
+      "ympd.afra-berlin.eu" = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = {
+          proxyPass = "http://localhost:8062/";
+          proxyWebsockets = true;
+          extraConfig = ''
+            allow 172.23.42.0/24;
+            allow fd00::/8;
+            deny all;
+          '';
+        };
       };
     };
   };

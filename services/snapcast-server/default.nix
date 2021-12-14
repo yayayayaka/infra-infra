@@ -39,18 +39,25 @@ in {
 
   services.nginx = {
     enable = true;
-    virtualHosts.default = {
-      locations."/snapweb/" = {
-        alias = "${snapweb}/";
-        extraConfig = ''
-          allow 172.23.42.0/24;
-          allow fd00::/8;
-          deny all;
-        '';
-      };
-      locations."~ ^/(jsonrpc|stream)$" = {
-        proxyPass = "http://localhost:${toString config.services.snapserver.http.port}";
-        proxyWebsockets = true;
+    virtualHosts = {
+      "core.afra-berlin.eu".locations."/snapweb/".return = "307 https://snapweb.afra-berlin.eu";
+      "snapweb.afra-berlin.eu" = {
+        enableACME = true;
+        forceSSL = true;
+        locations = {
+          "/" = {
+            alias = "${snapweb}/";
+            extraConfig = ''
+              allow 172.23.42.0/24;
+              allow fd00::/8;
+              deny all;
+            '';
+          };
+          "~ ^/(jsonrpc|stream)$" = {
+            proxyPass = "http://localhost:${toString config.services.snapserver.http.port}";
+            proxyWebsockets = true;
+          };
+        };
       };
     };
   };

@@ -18,6 +18,7 @@ in {
     ../../services/bgp-tunnel
     ../../services/unifi
     ../../services/presence-monitor
+    ../../services/dns
   ];
 
   boot.loader.grub.device = "/dev/disk/by-id/wwn-0x5000c50038ba4de7";
@@ -61,11 +62,22 @@ in {
 
   services.nginx = {
     enable = true;
-    virtualHosts.default = {
+    virtualHosts."core.afra-berlin.eu" = {
       locations."/".root = ./html;
-      serverName = "afra-core.yuka.dev";
       enableACME = true;
-      addSSL = true;
+      forceSSL = true;
+    };
+    virtualHosts."afra-berlin.eu" = {
+      enableACME = true;
+      forceSSL = true;
+    };
+    virtualHosts."core.lan" = {
+      locations."/".return = "307 https://core.afra-berlin.eu$request_uri";
+    };
+    virtualHosts."afra-core.yuka.dev" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/".return = "307 https://core.afra-berlin.eu$request_uri";
     };
   };
 

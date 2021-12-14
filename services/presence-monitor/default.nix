@@ -84,13 +84,20 @@ in {
 
   services.nginx = {
     enable = true;
-    virtualHosts.default = {
-      locations."/presence/api/" = {
-        proxyPass = "http://localhost:8000/";
-      };
-      locations."/presence/" = {
-        alias = "${presence-web}/";
-        tryFiles = "$uri $uri/ /presence/index.html";
+    virtualHosts = {
+      "core.afra-berlin.eu".locations."/presence/".return = "307 https://presence.afra-berlin.eu";
+      "presence.afra-berlin.eu" = {
+        enableACME = true;
+        forceSSL = true;
+        locations = {
+          "/api/" = {
+            proxyPass = "http://localhost:8000/";
+          };
+          "/" = {
+            alias = "${presence-web}/";
+            tryFiles = "$uri $uri/ /presence/index.html";
+          };
+        };
       };
     };
   };
