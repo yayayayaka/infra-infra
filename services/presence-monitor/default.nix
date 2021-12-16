@@ -10,7 +10,7 @@ let
       src = builtins.fetchGit {
         url = "https://git.yuka.dev/yuka/presence-monitor/";
         ref = "main";
-        rev = "7f7b361589f36fafb84a4fb7bac679cce52f4856";
+        rev = "0ea1c5560bb8c09aa41a33da9b1919562034f3f1";
       };
       cargoLock = {
         lockFile = src + "/Cargo.lock";
@@ -46,7 +46,7 @@ let
 
       src = builtins.fetchGit {
         url = "https://gitlab.com/luxferresum/presence-web/";
-        rev = "e906fc33e8c707236d7fd85d84db36c2c596e855";
+        rev = "b52ba8694bb1ad11269048734e2c06ed3a513400";
       };
 
       node_modules = npmlock2nix.node_modules { inherit src; };
@@ -91,11 +91,11 @@ in {
         forceSSL = true;
         locations = {
           "/api/" = {
-            proxyPass = "http://localhost:8000/";
+            proxyPass = "http://localhost:8000";
           };
           "/" = {
             alias = "${presence-web}/";
-            tryFiles = "$uri $uri/ /presence/index.html";
+            tryFiles = "$uri $uri/ /index.html";
           };
         };
       };
