@@ -19,6 +19,7 @@ in {
     ../../services/unifi
     ../../services/presence-monitor
     ../../services/dns
+    ../../services/minetest
   ];
 
   boot.loader.grub.device = "/dev/disk/by-id/wwn-0x5000c50038ba4de7";
