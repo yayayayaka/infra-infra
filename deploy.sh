@@ -31,8 +31,15 @@ set -x
 system_drv=$(
   nix-instantiate -A hosts.$host.config.system.build.toplevel \
     -I "$(nix-build nix/sources-dir.nix --no-out-link)" \
-    -I "nixos-config=$PWD/hosts/$host/configuration.nix"
 )
-nix-copy-closure --to $target $system_drv
-system=$(ssh $NIX_SSHOPTS $target "nix-store --realise $system_drv")
+
+if [ -n "$BUILD_LOCAL" ]
+then
+	system=$(nix-store --realise $system_drv)
+	nix-copy-closure --to $target $system
+else
+	nix-copy-closure --to $target $system_drv
+	system=$(ssh $NIX_SSHOPTS $target "nix-store --realise $system_drv")
+fi
+
 ssh $NIX_SSHOPTS $target "sudo nix-env -p /nix/var/nix/profiles/system -i $system && sudo /nix/var/nix/profiles/system/bin/switch-to-configuration $mode"
