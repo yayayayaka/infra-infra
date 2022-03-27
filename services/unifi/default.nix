@@ -3,6 +3,7 @@
 {
   nixpkgs.config.allowUnfree = true;
   services.unifi.enable = true;
+  services.unifi.openFirewall = true;
   services.unifi.unifiPackage = pkgs.unifi;
 
   # start controller on demand

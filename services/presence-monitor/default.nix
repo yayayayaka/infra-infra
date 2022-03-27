@@ -38,7 +38,7 @@ let
   npmlock2nix = pkgs.callPackage <npmlock2nix> {};
 
   presence-web = pkgs.callPackage (
-    { stdenv }:
+    { stdenv, nodejs-14_x }:
 
     stdenv.mkDerivation rec {
       pname = "presence-web";
@@ -49,7 +49,10 @@ let
         rev = "b52ba8694bb1ad11269048734e2c06ed3a513400";
       };
 
-      node_modules = npmlock2nix.node_modules { inherit src; };
+      node_modules = npmlock2nix.node_modules {
+        inherit src;
+        nodejs = nodejs-14_x;
+      };
 
       buildPhase = ''
         runHook preBuild

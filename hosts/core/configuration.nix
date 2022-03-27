@@ -57,7 +57,7 @@ in {
   #};
 
   security.acme = {
-    email = "afra@yuka.dev";
+    defaults.email = "afra@yuka.dev";
     acceptTerms = true;
   };
 
