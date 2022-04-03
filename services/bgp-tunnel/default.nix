@@ -70,7 +70,7 @@ in {
         name = "wg-${name}";
         addresses =  [
           { addressConfig.Address = "fdaf::${toString host.magicNumber}:2/112"; }
-          { addressConfig.Address = "169.254.${toString host.magicNumber}.2/24"; }
+          { addressConfig.Address = "10.21.${toString host.magicNumber}.2/24"; }
         ];
       }) hosts
     ) // {
