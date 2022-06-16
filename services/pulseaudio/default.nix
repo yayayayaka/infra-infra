@@ -2,6 +2,7 @@
 
 {
   networking.firewall.interfaces.enp3s0.allowedTCPPorts = [ 4713 ];
+  networking.firewall.interfaces.eth0.allowedTCPPorts = [ 4713 ];
   sound.enable = true;
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.systemWide = true;
