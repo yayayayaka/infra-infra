@@ -9,6 +9,6 @@ in
     lib.concatStringsSep "\n" ([
       "mkdir $out"
     ]
-      ++ lib.mapAttrsToList (name: source: "ln -s ${source.outPath} $out/${name}") sources
+      ++ lib.mapAttrsToList (name: source: "cp -r --reflink=auto ${source.outPath} $out/${name}") sources
     )
   )
