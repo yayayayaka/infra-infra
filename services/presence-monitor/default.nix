@@ -8,7 +8,7 @@ let
       pname = "presence-monitor";
       version = "0.1.0";
       src = builtins.fetchGit {
-        url = "https://git.yuka.dev/yuka/presence-monitor/";
+        url = "https://cyberchaos.dev/yuka/presence-monitor/";
         ref = "main";
         rev = "0ea1c5560bb8c09aa41a33da9b1919562034f3f1";
       };
