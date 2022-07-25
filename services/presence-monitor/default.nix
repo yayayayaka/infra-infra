@@ -10,30 +10,23 @@ let
       src = builtins.fetchGit {
         url = "https://cyberchaos.dev/yuka/presence-monitor/";
         ref = "main";
-        rev = "0ea1c5560bb8c09aa41a33da9b1919562034f3f1";
+        rev = "02a177299d812f0cdb9a2def998c7dc15efb3013";
       };
-      cargoLock = {
-        lockFile = src + "/Cargo.lock";
-        outputHashes = {
-          "pnet-0.28.0" = "142ic90ysw7gdz2qr8sbf8c9b635ralgvk2h88a7rdpqpiv64s61";
-        };
-      };
+      cargoLock.lockFile = src + "/Cargo.lock";
       buildInputs = [ sqlite ];
     }
   ) {};
 
-  configFile = pkgs.writeText "Rocket.toml" ''
-    [global]
-    address = "127.0.0.1"
+  configFile = pkgs.writeText "config.yaml" (builtins.toJSON {
+    bind = "127.0.0.1:8000";
+    database_url = "/var/lib/presence-monitor/db.sqlite";
 
-    [global.probe]
-    iface = "enp3s0"
-    source_v6_addr = "fe80::3285:a9ff:fe40:b2c9"
-    source_v4_addr = "172.23.42.229"
-
-    [global.databases]
-    sqlite_presence_monitor = { url = "/var/lib/presence-monitor/db.sqlite" }
-  '';
+    probe = {
+      iface = "enp3s0";
+      source_v6_addr = "fe80::3285:a9ff:fe40:b2c9";
+      source_v4_addr = "172.23.42.229";
+    };
+  });
 
   npmlock2nix = pkgs.callPackage <npmlock2nix> {};
 
@@ -75,7 +68,8 @@ in {
 
   systemd.services.presence-monitor = {
     wantedBy = [ "multi-user.target" ];
-    environment.ROCKET_CONFIG = configFile;
+    environment.CONFIG = configFile;
+    environment.RUST_LOG = "trace";
     serviceConfig = {
       EnvironmentFile = config.secrets.presence-monitor-env.path;
       ExecStart = "${presence-monitor}/bin/presence-monitor";
