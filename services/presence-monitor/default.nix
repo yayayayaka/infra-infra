@@ -10,7 +10,7 @@ let
       src = builtins.fetchGit {
         url = "https://cyberchaos.dev/yuka/presence-monitor/";
         ref = "main";
-        rev = "02a177299d812f0cdb9a2def998c7dc15efb3013";
+        rev = "a92642962fbd331ccac572e88a00f003ac219470";
       };
       cargoLock.lockFile = src + "/Cargo.lock";
       buildInputs = [ sqlite ];
@@ -20,6 +20,7 @@ let
   configFile = pkgs.writeText "config.yaml" (builtins.toJSON {
     bind = "127.0.0.1:8000";
     database_url = "/var/lib/presence-monitor/db.sqlite";
+    open_status_mac = "E8:94:F6:4F:CB:CC";
 
     probe = {
       iface = "enp3s0";
