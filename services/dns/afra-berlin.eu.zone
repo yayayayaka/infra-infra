@@ -16,3 +16,4 @@ ns1             IN      A          195.39.247.225
 ympd            IN      CNAME      core
 presence        IN      CNAME      core
 snapweb         IN      CNAME      core
+grafana         IN      CNAME      core

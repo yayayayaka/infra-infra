@@ -21,6 +21,7 @@ in {
     ../../services/dns
     ../../services/minetest
     ../../services/mosquitto
+    ../../services/grafana
   ];
 
   boot.loader.grub.device = "/dev/disk/by-id/wwn-0x5000c50038ba4de7";
