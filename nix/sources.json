@@ -5,22 +5,22 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "18b7314c13a6d0e82113a15c14e7a5f54286327d",
-        "sha256": "0b2xb99nn7ddysvgzncwa4vglv0j6c0l4bgxz9hl4i3gmrlq3r59",
+        "rev": "6bd7cd686220bf3db0e212481faf9578e8c8ff0f",
+        "sha256": "15claxlj6y15db67qc7kb4vzyn6sv7r13z4q502vq7a4z2488z94",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/18b7314c13a6d0e82113a15c14e7a5f54286327d.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/6bd7cd686220bf3db0e212481faf9578e8c8ff0f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
-        "branch": "nixos-unstable",
+        "branch": "nixos-23.11",
         "description": "Nix Packages collection",
         "homepage": "",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "42ca9bef09e780eabe84328dd1b730cef978f098",
-        "sha256": "0sg852hm5jihapwqbkpnrsnwxdf64fxbrdi44l5894dczrwqs2nj",
+        "rev": "3dc440faeee9e889fe2d1b4d25ad0f430d449356",
+        "sha256": "0a30jv7s6qpy7i98jznc6iirq68344byrgpvcvarpjrdvfp84sv1",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/42ca9bef09e780eabe84328dd1b730cef978f098.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/3dc440faeee9e889fe2d1b4d25ad0f430d449356.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "npmlock2nix": {
@@ -29,10 +29,10 @@
         "homepage": null,
         "owner": "nix-community",
         "repo": "npmlock2nix",
-        "rev": "ff17a3c59233911f776d8d462d61d82a3e41df34",
-        "sha256": "0l624gkkpn1r0g48b204k0wcqm9cwy5rzd5mnxwfjhyjj1wg4nl7",
+        "rev": "9197bbf397d76059a76310523d45df10d2e4ca81",
+        "sha256": "1ddfby72fsnpn4yw43g4zxvg6jzlk5hi5cfnnccg9jgw53ckr4xh",
         "type": "tarball",
-        "url": "https://github.com/nix-community/npmlock2nix/archive/ff17a3c59233911f776d8d462d61d82a3e41df34.tar.gz",
+        "url": "https://github.com/nix-community/npmlock2nix/archive/9197bbf397d76059a76310523d45df10d2e4ca81.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
