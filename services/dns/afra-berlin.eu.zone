@@ -1,5 +1,5 @@
 $TTL 3600
-@               IN      SOA        ns1.yuka.dev. afra.yuka.dev. 2021121401 7200 900 1209600 86400
+@               IN      SOA        ns1.yuka.dev. afra.yuka.dev. 2024052101 7200 900 1209600 86400
                 IN      NS         ns1.afra-berlin.eu.
                 IN      NS         ns1.yuka.dev.
                 IN      NS         ns2.yuka.dev.
@@ -17,3 +17,6 @@ ympd            IN      CNAME      core
 presence        IN      CNAME      core
 snapweb         IN      CNAME      core
 grafana         IN      CNAME      core
+
+
+todo.vorstand	IN	CNAME      afra.uber.space.
